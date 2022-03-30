@@ -1,37 +1,29 @@
 public class Battle {
+
     public void runBattle(Character player1, Character player2) {
+        while (player1.getHealth() > 0 && player2.getHealth() > 0){
+            System.out.println(player1.getName() + " is attacking " + player2.getName() + " with a/an " + player1.getWeapon().getName() + ", damage level "  + player1.getWeapon().getDamage() );
+            player1.battleCry();
+            player1.attack(player2);
 
-        while (player1.health > 0 && player2.health > 0){
+            System.out.println( player2.getName() +  ", health percentage is: " + player2.getHealth());
+            System.out.println();
+            if (player2.getHealth() > 0) {
 
-            System.out.println(player1.name + " is attacking " + player2.name + " with a/an " + player1.weapon.name + ", damage level "  + player1.weapon.damage );
+                System.out.println(player2.getName() + " is attacking " + player1.getName() + " with a/an " + player2.getWeapon().getName() + ", damage level " + player2.getWeapon().getDamage() );
+                player2.battleCry();
+                player2.attack(player1);
 
-            player2.health = player2.health - player1.weapon.damage;
-
-            if (player2.health < 0) {
-                player2.health = 0;
-            }
-            System.out.println( player2.name +  ", health percentage is: " + player2.health);
-
-            if (player2.health > 0) {
-
-                System.out.println(player2.name + " is attacking " + player1.name + " with a/an " + player2.weapon.name + ", damage level " + player2.weapon.damage );
-                player1.health = player1.health - player2.weapon.damage;
-
-                if (player1.health < 0) {
-                    player1.health = 0;
-                }
-                System.out.println( player1.name +  ", health percentage is: " + player1.health);
+                System.out.println(player1.getName() +  ", health percentage is: " + player1.getHealth());
+                System.out.println();
             }
         }
-
-        if (player1.health > player2.health) {
-            System.out.println(player2.name + " was knocked out. ");
-            System.out.println(player1.name + " is the winner of this battle ! ");
-        }
-        else {
-            System.out.println(player1.name + " was knocked out. ");
-            System.out.println(player2.name + " is the winner of this battle ! ");
-        }
-
+            if (player1.getHealth() > player2.getHealth()) {
+                System.out.println(player2.getName() + " was knocked out. ");
+                System.out.println(player1.getName() + " is the winner of this battle ! ");
+            } else {
+                System.out.println(player1.getName() + " was knocked out. ");
+                System.out.println(player2.getName() + " is the winner of this battle ! ");
+            }
     }
 }

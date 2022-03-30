@@ -1,13 +1,11 @@
 public class Main {
-    public static void main(String[] args) {
 
+    public static void main(String[] args) {
         CharacterCreator characters = new CharacterCreator();
         Battle battle = new Battle();
+        Enemy enemy = characters.generateEnemy("Ruby");
 
-        Character player1 = characters.generateCharacter("Ruby");
-        Character player2 = characters.generateCharacter("Ryu");
-
-        battle.runBattle(player1,player2);
-
+        Player player = characters.generatePlayer("Ryu");
+        battle.runBattle(player,enemy);
     }
 }
