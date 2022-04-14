@@ -1,9 +1,8 @@
 import java.util.Random;
-public class Enemy extends Character{
+public class Enemy extends Character {
 
-    protected String [] taunts;
-
-    public Enemy(String name, int health, Weapon weapon, String [] taunts) {
+    protected String[] taunts;
+    public Enemy(String name, int health, Weapon weapon, String[] taunts) {
         super(name, health, weapon);
         this.taunts = taunts;
     }

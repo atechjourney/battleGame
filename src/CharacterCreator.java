@@ -1,40 +1,37 @@
 import java.util.Random;
 
-public class CharacterCreator {
+public class CharacterCreator implements Generator {
 
-    private final String[] weaponNames = { "Japanese Sword", " Combat Knife", "Piston Gun", "Fist", "Grenade" , "ax", "mace", "riffle", "lance", "pike"};
-
+    @Override
     public Character generateCharacter(String name) {
         Random random = new Random();
         int health = random.nextInt(20, 51);
-        int weapons = random.nextInt(0,10);
-        String weaponName = weaponNames [weapons];
-        int weaponDamage = random.nextInt(5, 16);
-        Weapon weapon = new Weapon(weaponName, weaponDamage);
+        Weapon weapon = generateWeapon();
         return new Character(name,health,weapon);
     }
 
-    public Enemy generateEnemy(String name){
+    public Enemy generateEnemy(String name) {
         Random random = new Random();
         int health = random.nextInt(20, 51);
-        int weapons = random.nextInt(0,10);
-        String weaponName = weaponNames [weapons];
-        int weaponDamage = random.nextInt(5, 16);
-        Weapon weapon = new Weapon(weaponName, weaponDamage);
-        String [] taunts = {
-                "I will seat at the throne again!", "You can do much better than that, My lord"
+        Weapon weapon = generateWeapon();
+        String[] taunts = {
+                "I will gain the throne again!", "Did you miss me?"
         };
         return new Enemy(name,health,weapon,taunts);
     }
     public Player generatePlayer(String name) {
         Random random = new Random();
         int health = random.nextInt(20, 51);
-        int weapons = random.nextInt(0, 10);
-        String weaponName = weaponNames[weapons];
-        int weaponDamage = random.nextInt(5, 16);
-        Weapon weapon = new Weapon(weaponName, weaponDamage);
+        Weapon weapon = generateWeapon();
+        String favouriteSaying =
+                "For Susexx!";
+        return new Player(name,health,weapon,favouriteSaying);
+    }
 
-        String favouriteSaying = "For Susexxxxx!";
-        return new Player(name, health, weapon, favouriteSaying);
+    @Override
+    public Weapon generateWeapon() {
+        Weapon[] weaponTypes = Weapon.values();
+        Random random = new Random();
+        return weaponTypes[random.nextInt(weaponTypes.length)];
     }
 }
